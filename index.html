@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISS Satellite</title>
+    <link rel="stylesheet" href="/Promise/Async data task  1/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <style>
+       h1{
+    color:mediumvioletred;
+    font-family:Palatino Linotype;
+    background-color: chartreuse;
+    display: flex;
+    justify-content: center;
+    font-size:50px;
+    border-radius: 30px;
+}
+body{
+    background-color:#ddd;
+}
+p{
+    font-size: 40px;
+    padding-left: 430px;
+    color: red;
+   
+}
+button{
+    font-size:large;
+    color:black ;
+    background-color:cyan;
+    border-radius: 15px;
+  
+    
+}
+
+.fa{
+    padding-top: 150px;
+    padding-left: 500px;
+    color:darkorange;
+}
+   </style>
+
+</head>
+<body>
+   <div class="box" >
+
+    <script src="/Promise/Async data task  1/script.js"></script>
+    <h1> Where is the ISS Satellite NOW</h1>
+    <p> Latitude:  <span id="lat"></span><br>   
+        Longitude:  <span id="lng"></span> </p>
+        <div>
+            <i class="fa fa-hand-o-right fa-2x "  aria-hidden="true"></i>
+            <button type="button" onclick="location.reload()">Click here for new Location</button>
+            
+           </div>
+   </div>
+   <script>
+       
+
+async function getIss() {
+    let data = await fetch('https://api.wheretheiss.at/v1/satellites/25544');
+    let data1 = await data.json();
+    let { latitude, longitude } = data1;
+    console.log(data1.latitude);
+    console.log(data1.longitude);
+
+    document.getElementById('lat').textContent = latitude;
+    document.getElementById('lng').textContent = longitude;
+
+
+
+};
+getIss();
+   </script>
+
+</body>
+</html>
